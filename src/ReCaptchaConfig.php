@@ -5,7 +5,7 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
-namespace himiklab\yii2\recaptcha;
+namespace websvc\yii2\recaptcha;
 
 /**
  * Yii2 Google reCAPTCHA widget global config.

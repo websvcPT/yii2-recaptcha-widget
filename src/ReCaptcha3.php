@@ -5,7 +5,7 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
-namespace himiklab\yii2\recaptcha;
+namespace websvc\yii2\recaptcha;
 
 use Yii;
 use yii\base\InvalidConfigException;
@@ -82,6 +82,10 @@ class ReCaptcha3 extends InputWidget
         $this->configComponentProcess();
     }
 
+    /**
+     * Updated on 2.1.1.1
+     * @return void
+     */
     public function run()
     {
         parent::run();
@@ -91,25 +95,24 @@ class ReCaptcha3 extends InputWidget
             'render' => $this->siteKey,
         ]);
 
-        $view->registerJsFile(
-            $this->jsApiUrl . '?' . $arguments,
-            ['position' => $view::POS_END]
-        );
+        $url = $this->jsApiUrl . '?' . $arguments;
         $view->registerJs(
-            <<<JS
+        <<<JS
 "use strict";
+$.getScript('$url').done(function() {
 grecaptcha.ready(function() {
     grecaptcha.execute("{$this->siteKey}", {action: "{$this->action}"}).then(function(token) {
         jQuery("#" + "{$this->getReCaptchaId()}").val(token);
-
-        const jsCallback = "{$this->jsCallback}";
-        if (jsCallback) {
-            eval("(" + jsCallback + ")(token)");
-        }
-    });
+            const jsCallback = "{$this->jsCallback}";
+                if (jsCallback) {
+                    eval("(" + jsCallback + ")(token)");
+                }
+            });
+        });
 });
 JS
-            , $view::POS_READY);
+            , $view::POS_READY
+        );
 
         $this->customFieldPrepare();
     }

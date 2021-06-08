@@ -1,5 +1,5 @@
 {
-    "name": "himiklab/yii2-recaptcha-widget",
+    "name": "websvc/yii2-recaptcha-widget",
     "description": "Yii2 Google reCAPTCHA v2 and v3 widget",
     "keywords": ["yii2", "captcha", "recaptcha", "google", "widget"],
     "type": "yii2-extension",
@@ -12,6 +12,10 @@
         {
             "name": "HimikLab",
             "homepage": "https://github.com/himiklab/"
+        },
+        {
+            "name": "websvcPT",
+            "homepage": "https://github.com/websvcPT/"
         }
     ],
     "require": {
@@ -23,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "himiklab\\yii2\\recaptcha\\": "src/"
+            "websvc\\yii2\\recaptcha\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "himiklab\\yii2\\recaptcha\\tests\\": "tests/"
+            "websvc\\yii2\\recaptcha\\tests\\": "tests/"
         }
     }
 }
